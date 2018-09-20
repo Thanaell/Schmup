@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DoubleShoot : ShootingMode
 {
-
-    public GameObject shot;
-    public Transform shotSpawn;
+    [SerializeField]
+    private GameObject shot;
+    [SerializeField]
+    private Transform shotSpawn;
     override public void Shoot()
     {
         shotSpawn.Rotate(0, 25, 0);

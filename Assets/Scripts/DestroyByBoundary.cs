@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class DestroyByBoundary : MonoBehaviour
 {
-    public int value;
+    [SerializeField]
+    private int value;
     private GController myGameController;
     void Start()
     {

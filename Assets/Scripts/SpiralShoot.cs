@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class SpiralShoot : ShootingMode {
 
+    [SerializeField]
+    private GameObject shot;
+    [SerializeField]
+    private Transform shotSpawn;
 
-    public GameObject shot;
-    public Transform shotSpawn;
+
+
     override public void Shoot()
     {
         shotSpawn.Rotate(0, 20, 0);

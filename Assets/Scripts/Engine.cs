@@ -9,10 +9,12 @@ public class Boundary
 }
 
 public class Engine : MonoBehaviour {
-
-    public float speed;
-    public float tilt;
-    public Boundary boundary;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float tilt;
+    [SerializeField]
+    private Boundary boundary;
 
     public void move(float moveHorizontal, float moveVertical)
     {

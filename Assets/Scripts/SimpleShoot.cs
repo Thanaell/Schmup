@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleShoot : ShootingMode {
-
-    public GameObject shot;
-    public Transform shotSpawn;
+    [SerializeField]
+    private GameObject shot;
+    [SerializeField]
+    private Transform shotSpawn;
 
     override public void Shoot()
     {

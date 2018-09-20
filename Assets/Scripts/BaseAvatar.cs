@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseAvatar : MonoBehaviour {
-    public float damageDealt;
-    public GameObject deathExplosion;
-    public GameObject smallExplosion;
+    [SerializeField]
+    private float damageDealt;
+    [SerializeField]
+    protected GameObject deathExplosion;
+    [SerializeField]
+    protected GameObject smallExplosion;
     protected float currentHealth;
     [SerializeField]
     private float maximumHealthPoint;
+
     public float MaximumHealthPoint
     {
         get
@@ -30,12 +34,14 @@ public class BaseAvatar : MonoBehaviour {
 
 	}
 
-    public float getCurrentHealth()
-    {
-        return currentHealth;
-    }
+
      virtual public void TakeDamage(float damage)
     {
         Debug.Log("bonjour");
+    }
+
+    public float getDamageDealt()
+    {
+        return damageDealt;
     }
 }

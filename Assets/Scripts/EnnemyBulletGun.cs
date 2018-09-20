@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnnemyBulletGun : MonoBehaviour
 {
-
-
-    public GameObject shot;
-    public Transform shotSpawn;
-    public float fireRate;
+    [SerializeField]
+    private GameObject shot;
+    [SerializeField]
+    private Transform shotSpawn;
+    [SerializeField]
+    private float fireRate;
 
     private float nextFire = 0f;
  

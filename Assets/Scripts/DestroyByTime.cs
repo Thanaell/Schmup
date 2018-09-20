@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyByTime : MonoBehaviour {
-    public float lifeTime;
+    [SerializeField]
+    private float lifeTime;
 	// Use this for initialization
 	void Start () {
         Destroy(gameObject,lifeTime);

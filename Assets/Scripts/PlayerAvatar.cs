@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class PlayerAvatar : BaseAvatar {
     private GController myGameControllerScript;
-    public float maxEnergy;
+    [SerializeField]
+    private float maxEnergy;
     private float energy;
-    public float energyGain;
+    [SerializeField]
+    private float energyGain;
     private Slider energySlider;
     private Slider healthSlider;
     private bool isEnergyDrained = false;

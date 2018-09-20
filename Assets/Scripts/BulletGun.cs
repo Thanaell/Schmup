@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletGun : MonoBehaviour {
-
-    public ShootingMode[] myShootingModes;
-    public int indexShoot=0;
-
-
+    [SerializeField]
+    private ShootingMode[] myShootingModes;
+    private int indexShoot=0;
     private float nextFire = 0f;
     private PlayerAvatar myPlayer;
     private bool canShoot;
@@ -20,7 +18,7 @@ public class BulletGun : MonoBehaviour {
 
     public void Wait()
     {
-        canShoot = myPlayer.IncreaseEnergy(myShootingModes[indexShoot].shotCost);
+        canShoot = myPlayer.IncreaseEnergy(myShootingModes[indexShoot].getShotCost());
     }
 
     public void Shoot()
@@ -28,9 +26,9 @@ public class BulletGun : MonoBehaviour {
         
         if (Time.time > nextFire && canShoot)
         {
-            nextFire = Time.time + myShootingModes[indexShoot].fireRate;
+            nextFire = Time.time + myShootingModes[indexShoot].getFireRate();
             myShootingModes[indexShoot].Shoot();
-            canShoot = myPlayer.DecreaseEnergy(myShootingModes[indexShoot].shotCost);
+            canShoot = myPlayer.DecreaseEnergy(myShootingModes[indexShoot].getShotCost());
         }
         else if(!canShoot)
         {
