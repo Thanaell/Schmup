@@ -13,10 +13,7 @@ public class InputController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            myBulletGun.SwitchShootingMode();
-        }
+      
         if (Input.GetKey("space"))
         {
             myBulletGun.Shoot();
@@ -25,7 +22,7 @@ public class InputController : MonoBehaviour {
         {
             myBulletGun.Wait();
         }
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             myBulletGun.SwitchShootingMode();
         }

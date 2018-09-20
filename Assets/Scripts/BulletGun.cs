@@ -7,7 +7,6 @@ public class BulletGun : MonoBehaviour {
     public ShootingMode[] myShootingModes;
     public int indexShoot=0;
 
-    public float fireRate;
 
     private float nextFire = 0f;
     private PlayerAvatar myPlayer;
@@ -26,18 +25,22 @@ public class BulletGun : MonoBehaviour {
 
     public void Shoot()
     {
+        
         if (Time.time > nextFire && canShoot)
         {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + myShootingModes[indexShoot].fireRate;
             myShootingModes[indexShoot].Shoot();
             canShoot = myPlayer.DecreaseEnergy();
+        }
+        else if(!canShoot)
+        {
+            Wait();
         }
     }
 
     public void SwitchShootingMode()
     {
         indexShoot = (indexShoot + 1) % myShootingModes.Length;
-        Debug.Log("Switch to mode" + (indexShoot+1)%myShootingModes.Length);
     }
 
 

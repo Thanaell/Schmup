@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShootingMode : MonoBehaviour {
 
+    public float fireRate;
 	virtual public void Shoot()
     {
 

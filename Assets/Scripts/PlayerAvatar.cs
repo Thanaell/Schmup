@@ -15,6 +15,7 @@ public class PlayerAvatar : BaseAvatar {
     public float energyGain;
     private Slider energySlider;
     private Slider healthSlider;
+    private bool isEnergyDrained = false;
 
     // Use this for initialization
     void Start () {
@@ -63,6 +64,7 @@ public class PlayerAvatar : BaseAvatar {
         {
             energy = maxEnergy;
             UpdateSlider();
+            isEnergyDrained = false;
             return true;
         }
         else
@@ -71,7 +73,14 @@ public class PlayerAvatar : BaseAvatar {
             UpdateSlider();
             if (energy >= shotCost)
             {
-                return true;
+                if (isEnergyDrained)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
@@ -87,6 +96,7 @@ public class PlayerAvatar : BaseAvatar {
         {
             energy = 0;
             UpdateSlider();
+            isEnergyDrained = true;
             return false;
         }
         else
