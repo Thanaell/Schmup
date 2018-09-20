@@ -20,7 +20,7 @@ public class BulletGun : MonoBehaviour {
 
     public void Wait()
     {
-        canShoot = myPlayer.IncreaseEnergy();
+        canShoot = myPlayer.IncreaseEnergy(myShootingModes[indexShoot].shotCost);
     }
 
     public void Shoot()
@@ -30,7 +30,7 @@ public class BulletGun : MonoBehaviour {
         {
             nextFire = Time.time + myShootingModes[indexShoot].fireRate;
             myShootingModes[indexShoot].Shoot();
-            canShoot = myPlayer.DecreaseEnergy();
+            canShoot = myPlayer.DecreaseEnergy(myShootingModes[indexShoot].shotCost);
         }
         else if(!canShoot)
         {

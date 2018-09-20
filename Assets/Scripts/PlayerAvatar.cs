@@ -8,10 +8,8 @@ using UnityEngine.UI;
 
 public class PlayerAvatar : BaseAvatar {
     private GController myGameControllerScript;
-    private Text healthText;
     public float maxEnergy;
     private float energy;
-    public float shotCost;
     public float energyGain;
     private Slider energySlider;
     private Slider healthSlider;
@@ -58,7 +56,7 @@ public class PlayerAvatar : BaseAvatar {
         healthSlider.value = currentHealth;
     }
 
-    public bool IncreaseEnergy()
+    public bool IncreaseEnergy(float actionCost)
     {
         if (energy + energyGain >= maxEnergy)
         {
@@ -71,7 +69,7 @@ public class PlayerAvatar : BaseAvatar {
         {
             energy += energyGain;
             UpdateSlider();
-            if (energy >= shotCost)
+            if (energy >= actionCost)
             {
                 if (isEnergyDrained)
                 {
@@ -90,9 +88,9 @@ public class PlayerAvatar : BaseAvatar {
         
     }
 
-    public bool DecreaseEnergy()
+    public bool DecreaseEnergy(float actionCost)
     {
-        if (energy - shotCost <= 0)
+        if (energy - actionCost <= 0)
         {
             energy = 0;
             UpdateSlider();
@@ -101,7 +99,7 @@ public class PlayerAvatar : BaseAvatar {
         }
         else
         {
-            energy -= shotCost;
+            energy -= actionCost;
             UpdateSlider();
             return true;
         }
