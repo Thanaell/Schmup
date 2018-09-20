@@ -19,7 +19,6 @@ public class EnemyAvatar : BaseAvatar {
     override public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemy lost " + damage + "health");
         if (currentHealth <= 0)
         {
             Instantiate(deathExplosion, transform.position, transform.rotation);

@@ -9,17 +9,31 @@ using UnityEngine.UI;
 public class PlayerAvatar : BaseAvatar {
     private GController myGameControllerScript;
     private Text healthText;
+    public float maxEnergy;
+    private float energy;
+    public float shotCost;
+    public float energyGain;
+    private Slider energySlider;
+    private Slider healthSlider;
+
     // Use this for initialization
     void Start () {
         myGameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GController>();
         currentHealth = MaximumHealthPoint;
-        healthText = GameObject.Find("Canvas/HealthText").GetComponent<Text>();
-        healthText.text = currentHealth + " / " + MaximumHealthPoint;
+        energy = maxEnergy;
+        currentHealth = MaximumHealthPoint;
+        energySlider = GameObject.Find("Canvas/EnergySlider").GetComponent<Slider>();
+        energySlider.minValue = 0;
+        energySlider.maxValue = maxEnergy;
+        healthSlider = GameObject.Find("Canvas/HealthSlider").GetComponent<Slider>();
+        healthSlider.minValue = 0;
+        healthSlider.maxValue = MaximumHealthPoint;
+        healthSlider.value = currentHealth;
     }
 	
 	// Update is called once per frame
-	void Update () {
-     
+	void UpdateSlider () {
+        energySlider.value = energy;
     }
     override public void TakeDamage(float damage)
     {
@@ -40,13 +54,46 @@ public class PlayerAvatar : BaseAvatar {
 
     void UpdateDisplayHealth()
     {
-        if (currentHealth >= 0)
+        healthSlider.value = currentHealth;
+    }
+
+    public bool IncreaseEnergy()
+    {
+        if (energy + energyGain >= maxEnergy)
         {
-            healthText.text = currentHealth + " / " + MaximumHealthPoint;
+            energy = maxEnergy;
+            UpdateSlider();
+            return true;
         }
         else
         {
-            healthText.text = "0 /" + MaximumHealthPoint;
+            energy += energyGain;
+            UpdateSlider();
+            if (energy >= shotCost)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+    }
+
+    public bool DecreaseEnergy()
+    {
+        if (energy - shotCost <= 0)
+        {
+            energy = 0;
+            UpdateSlider();
+            return false;
+        }
+        else
+        {
+            energy -= shotCost;
+            UpdateSlider();
+            return true;
         }
     }
     

@@ -5,12 +5,12 @@ using UnityEngine;
 public class AI : MonoBehaviour {
 
     private Engine myEngine;
-    private BulletGun myBulletGun;
+    private EnnemyBulletGun myBulletGun;
 
 	// Use this for initialization
 	void Start () {
         myEngine = GetComponent<Engine>();
-        myBulletGun = GetComponent<BulletGun>();
+        myBulletGun = GetComponent<EnnemyBulletGun>();
     }
 	
 	// Update is called once per frame

@@ -4,25 +4,41 @@ using UnityEngine;
 
 public class BulletGun : MonoBehaviour {
 
+    public ShootingMode[] myShootingModes;
+    public int indexShoot=0;
 
-    public GameObject shot;
-    public Transform shotSpawn;
     public float fireRate;
 
     private float nextFire = 0f;
+    private PlayerAvatar myPlayer;
+    private bool canShoot;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        myPlayer = gameObject.GetComponent<PlayerAvatar>();
+        canShoot = true;
+    }
 
-    // Update is called once per frame
+    public void Wait()
+    {
+        canShoot = myPlayer.IncreaseEnergy();
+    }
+
     public void Shoot()
     {
-        if (Time.time > nextFire)
+        if (Time.time > nextFire && canShoot)
         {
             nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            myShootingModes[indexShoot].Shoot();
+            canShoot = myPlayer.DecreaseEnergy();
         }
     }
+
+    public void SwitchShootingMode()
+    {
+        indexShoot = (indexShoot + 1) % myShootingModes.Length;
+        Debug.Log("Switch to mode" + (indexShoot+1)%myShootingModes.Length);
+    }
+
+
 }
