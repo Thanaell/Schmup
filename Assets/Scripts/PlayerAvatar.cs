@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
-
+public class FloatEvent : UnityEvent<float> { }
 
 public class PlayerAvatar : BaseAvatar {
+    public FloatEvent myEvent;
     private GController myGameControllerScript;
     [SerializeField]
     private float maxEnergy;
@@ -19,6 +21,7 @@ public class PlayerAvatar : BaseAvatar {
 
     // Use this for initialization
     void Start () {
+        myEvent = new FloatEvent();
         myGameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GController>();
         currentHealth = MaximumHealthPoint;
         energy = maxEnergy;
@@ -43,8 +46,9 @@ public class PlayerAvatar : BaseAvatar {
         if (currentHealth <= 0)
         {
             Instantiate(deathExplosion, transform.position, transform.rotation);
-            Destroy(gameObject);
-            myGameControllerScript.GameOver();       
+            Destroy(gameObject);  
+            myEvent.AddListener(myGameControllerScript.GameOver); //j'aimerais passer par l'éditeur, mais ça marche pas
+            myEvent.Invoke(5f);
         }
         else
         {
@@ -107,4 +111,5 @@ public class PlayerAvatar : BaseAvatar {
         }
     }
     
+  
 }

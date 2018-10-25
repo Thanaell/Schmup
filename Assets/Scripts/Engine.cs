@@ -30,4 +30,10 @@ public class Engine : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, moveHorizontal * -tilt);
     }
 
+
+    public void Dash()
+    {
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x - 2, boundary.xMin, boundary.xMax), transform.position.y, transform.position.z);
+    }
+
 }
