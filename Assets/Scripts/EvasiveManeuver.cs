@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class EvasiveManeuver : MonoBehaviour
 {
-
-    public float dodge;
-    public float smoothing;
-    public float tilt;
-    public Vector2 startWait;
-    public Vector2 maneuverTime;
-    public Vector2 maneuverWait;
-    public Boundary boundary;
+    [SerializeField]
+    private float dodge;
+    [SerializeField]
+    private float smoothing;
+    [SerializeField]
+    private float tilt;
+    [SerializeField]
+    private Vector2 startWait;
+    [SerializeField]
+    private Vector2 maneuverTime;
+    [SerializeField]
+    private Vector2 maneuverWait;
+    [SerializeField]
+    private Boundary boundary;
 
     private float currentSpeed;
     private float targetManeuver;

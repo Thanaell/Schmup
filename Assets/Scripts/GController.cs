@@ -5,17 +5,23 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GController : MonoBehaviour {
-
-    public GameObject[] hazards;
-    public Vector3 spawnValues;
-    public int hazardCount;
-    public float spawnWait;
-    public float startWait;
-    public float waveWait;
-    public int score;
-    public Text scoreText;
-    public Text restartText;
-    public Text gameOverText;
+    [SerializeField]
+    private GameObject[] hazards;
+    [SerializeField]
+    private Vector3 spawnValues;
+    [SerializeField]
+    private int hazardCount;
+    [SerializeField]
+    private float spawnWait;
+    [SerializeField]
+    private float startWait;
+    [SerializeField]
+    private float waveWait;
+   
+    private int score;
+    private Text scoreText; 
+    private Text restartText; 
+    private Text gameOverText;
     private bool gameOver;
     private bool restart;
 
@@ -65,12 +71,13 @@ public class GController : MonoBehaviour {
         UpdateScore();
     }
 
-    public void GameOver()
+    public void GameOver(float myFloat)
     {
+        Debug.Log(myFloat);
         gameOverText.text = "Game Over";
         gameOver = true;
     }
-	// Update is called once per frame
+
 	void UpdateScore () {
         if (!gameOver)
         {
@@ -87,5 +94,9 @@ public class GController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+    }
+    public void Test()
+    {
+        Debug.Log("Test");
     }
 }

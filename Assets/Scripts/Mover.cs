@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    public float speed;
+    [SerializeField]
+    private float speed;
     private Rigidbody rb;
     
 

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomRotator : MonoBehaviour {
-
-    public float tumble;
+    [SerializeField]
+    private float tumble;
     private Rigidbody rb;
 	// Use this for initialization
 	void Start () {

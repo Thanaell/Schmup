@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BackgroundScroller : MonoBehaviour {
 
-
-    public float scrollSpeed;
-    public float tileSizeZ;
+    [SerializeField]
+    private float scrollSpeed;
+    [SerializeField]
+    private float tileSizeZ;
 
     private Vector3 startPosition;
 
